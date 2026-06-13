@@ -36,9 +36,7 @@ print_total_time(){
 }
 
 app_setup(){
-
-
-id roboshop &>> $LOGS_FILE
+    id roboshop &>> $LOGS_FILE
         if [ $? -ne 0 ]; then
             useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGS_FILE
             validate $? "Creating roboshop system user"
@@ -74,17 +72,14 @@ nodejs_setup(){
 
 systemd_setup(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
-    validate $? "Created systemctl service"
+    VALIDATE $? "Created systemctl service"
 
-
-    systemctl deamon-reload
-    system enable $app_name    &>>$LOGS_FILE
-    validate $? "Enabling $app_name"
-
+    systemctl daemon-reload
+    systemctl enable $app_name &>>$LOGS_FILE
+    VALIDATE $? "Enabling $app_name"
 }
 
 app_restart(){
- 
-    systemctl restart $app_name &>>$LOGS_FILE
-    validate $? "Restarting $app_name"
+    systemctl restart $app_name
+    VALIDATE $? "$app_name restarting"
 }

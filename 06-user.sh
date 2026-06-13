@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_name=catalogue
+app_name=user
 source ./common.sh
 check_root
 app_setup
@@ -22,5 +22,4 @@ else
     echo -e "Products already loaded ... $Y SKIPPING $N"
 fi
 
-app_restart
 print_total_time
