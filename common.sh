@@ -88,20 +88,20 @@ app_restart(){
 
 java_setup(){
    dnf install maven -y &>>$LOGS_FILE
-    VALIDATE $? "Installing Maven"
+    validate $? "Installing Maven"
 
     mvn clean package  &>>$LOGS_FILE
     mv target/shipping-1.0.jar shipping.jar 
-    VALIDATE $? "Installing dependencies"
+    validate $? "Installing dependencies"
 
 }
 
 python_setup(){
 
     dnf install python3 gcc python3-devel -y &>>$LOGS_FILE
-    VALIDATE $? "Installing python"
+    validate $? "Installing python"
 
     pip3 install -r requirements.txt &>>$LOGS_FILE
-    VALIDATE $? "Installing dependencies"
+    validate $? "Installing dependencies"
 
 }
