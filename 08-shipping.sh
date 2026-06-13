@@ -1,6 +1,7 @@
 #!/bin/bash
 
 app_name=shipping
+MYSQL_HOST=mysql.lpdaws.online
 source ./common.sh
 check_root
 
