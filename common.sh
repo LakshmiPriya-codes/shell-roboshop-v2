@@ -6,6 +6,7 @@ sudo mkdir -p / $LOG_FOLDER
 sudo chown -R ec2-user:ec2-user $LOG_FOLDER
 sudo chmod -R 755 $LOG_FOLDER
 LOGS_FILE="$LOGS_FOLDER/$0.log"
+SCRIPT_DIR=$PWD
 USERID=$(id -u)
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 R="\e[31m"
@@ -71,7 +72,7 @@ nodejs_setup(){
 }
 
 systemd_setup(){
-    
+
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     validate $? "Created systemctl service"
 
